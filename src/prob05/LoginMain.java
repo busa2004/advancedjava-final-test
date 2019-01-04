@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LoginMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		Scanner scanner = new Scanner(System.in);
 		
 		List<User> joinUsers = new ArrayList<User>();
@@ -22,6 +22,18 @@ public class LoginMain {
 		/*
 		 *  로그인 처리 부분을 완성 합니다.
 		 */
+		try {
+			login(joinUsers, new User(id,password));
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			   System.out.println(e.getMessage());
+		} catch (PasswordDismatchException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			   System.out.println(e.getMessage());
+		}
+			
 		
 
 	}
@@ -36,5 +48,7 @@ public class LoginMain {
 		if( !savedUser.getPassword().equals( user.getPassword()) ){
 			throw new PasswordDismatchException();
 		}
+		
+		System.out.println("로그인 성공");
 	}
 }
